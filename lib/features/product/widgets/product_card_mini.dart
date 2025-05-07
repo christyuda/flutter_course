@@ -45,7 +45,7 @@ class ProductCardMini extends StatelessWidget {
               child: AspectRatio(
                 aspectRatio: 1,
                 child: Image.network(
-                  product.imageUrl?? '',
+                  "https://dummyimage.com/640x4:3/",
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) => Container(
                     color: Colors.grey.shade200,
