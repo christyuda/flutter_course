@@ -37,13 +37,6 @@ class MainNavigationBar extends StatelessWidget {
           if (!isMobile) ...[
             Row(
               children: [
-                navItem(context, "Home", currentMenu),
-                navItem(context, "Shop", currentMenu, isNew: true),
-                navItem(context, "Product", currentMenu),
-                navItem(context, "Sale", currentMenu, isSale: true),
-                navItem(context, "Portfolio", currentMenu),
-                navItem(context, "Lookbook", currentMenu),
-                navItem(context, "Blog", currentMenu),
               ],
             ),
             const Spacer(),
@@ -137,9 +130,9 @@ class MainNavigationBar extends StatelessWidget {
           case "Home":
             Navigator.pushNamed(context, AppRoutes.home);
             break;
-          case "Product":
-            Navigator.pushNamed(context, AppRoutes.product);
-            break;
+          // case "Product":
+          //   Navigator.pushNamed(context, AppRoutes.product);
+          //   break;
           default:
             Navigator.pushNamed(context, AppRoutes.home);
         }

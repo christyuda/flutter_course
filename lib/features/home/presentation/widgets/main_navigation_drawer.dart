@@ -23,7 +23,7 @@ class MainNavigationDrawer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16),
               child: Text(
-                "kalles",
+                "Elektroshop",
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -39,13 +39,13 @@ class MainNavigationDrawer extends StatelessWidget {
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 children: [
-                  drawerItem(context, "Home", currentMenu),
-                  drawerItem(context, "Shop", currentMenu, badge: "New"),
-                  drawerItem(context, "Product", currentMenu),
-                  drawerItem(context, "Sale", currentMenu, badge: "Sale"),
-                  drawerItem(context, "Portfolio", currentMenu),
-                  drawerItem(context, "Lookbook", currentMenu),
-                  drawerItem(context, "Blog", currentMenu),
+                  // drawerItem(context, "Home", currentMenu),
+                  // drawerItem(context, "Shop", currentMenu, badge: "New"),
+                  // drawerItem(context, "Product", currentMenu),
+                  // drawerItem(context, "Sale", currentMenu, badge: "Sale"),
+                  // drawerItem(context, "Portfolio", currentMenu),
+                  // drawerItem(context, "Lookbook", currentMenu),
+                  // drawerItem(context, "Blog", currentMenu),
                 ],
               ),
             ),
