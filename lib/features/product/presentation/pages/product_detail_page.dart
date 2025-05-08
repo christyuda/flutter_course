@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_course/core/utils/responsive.dart';
+import 'package:flutter_course/features/order/presentation/providers/order_provider.dart';
 import 'package:flutter_course/features/product/presentation/domain/entities/product_entities.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final ProductEntity product;
@@ -148,7 +150,33 @@ class _ProductInfo extends StatelessWidget {
           children: [
             Expanded(
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () async{
+                  final orderProvider = Provider.of<OrderProvider>(context, listen: false);
+
+                  final orderData = {
+                    "customer_id": "cust123", // nanti bisa dinamis kalau ada user login
+                    "shipping_addr": "123 Main Street, Anytown, USA", // dummy address
+                    "order_items": [
+                      {
+                        "product_id": product.id,
+                        "quantity": 1
+                      }
+                    ]
+                  };
+
+                  final newOrder = await orderProvider.createOrder(orderData);
+
+                  if (newOrder != null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Product added to cart!")),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(orderProvider.message ?? "Failed to add to cart")),
+                    );
+                  }
+
+                },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   backgroundColor: Colors.black,

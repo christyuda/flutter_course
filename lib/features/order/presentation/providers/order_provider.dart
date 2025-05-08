@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_course/features/order/presentation/service/order_service.dart';
+import 'package:hive/hive.dart';
 import '../domain/model/order_entity.dart';
 
 class OrderProvider with ChangeNotifier {
-  final OrderService _orderService = OrderService();
+final box = Hive.box('authBox');
+late final String token;
+late final OrderService _orderService;
+
+OrderProvider() {
+  token = box.get('access_token');
+  _orderService = OrderService(token);
+}
+
 
   List<OrderEntity> _orders = [];
   List<OrderEntity> get orders => _orders;
@@ -60,5 +69,21 @@ class OrderProvider with ChangeNotifier {
     notifyListeners();
 
     return success;
+  }
+  /// Create new order
+  Future<OrderEntity?> createOrder(Map<String, dynamic> orderData) async {
+    _isLoading = true;
+    notifyListeners();
+
+    final newOrder = await _orderService.createOrder(orderData);
+    if (newOrder != null) {
+      _orders.add(newOrder); // Add ke list biar langsung muncul
+    }
+    _message = _orderService.message;
+
+    _isLoading = false;
+    notifyListeners();
+
+    return newOrder;
   }
 }
